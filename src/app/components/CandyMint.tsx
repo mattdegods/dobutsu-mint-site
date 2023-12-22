@@ -16,7 +16,7 @@ import {
   some,
   transactionBuilder,
 } from "@metaplex-foundation/umi";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { motion } from "framer-motion";
 import { FC, useEffect, useState } from "react";
 import { DotLoader } from "react-spinners";
@@ -30,6 +30,7 @@ interface Props {
 const CandyMint: FC<Props> = ({ setMintSuccess }) => {
   // hooks
   const wallet = useWallet();
+  const { connection } = useConnection();
 
   // ENV constants
   const treasury = process.env.NEXT_PUBLIC_TREASURY;
@@ -40,6 +41,16 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
 
   // functions
+  const getNetworkType = (rpcUrl: string) => {
+    if (rpcUrl.includes("devnet")) return "devnet";
+    if (rpcUrl.includes("mainnet-beta")) return "mainnet";
+    // Add more conditions as needed for other networks like testnet
+    return "testnet";
+  };
+
+  // Determine the network type
+  const networkType = getNetworkType(connection.rpcEndpoint);
+
   const onClick = async () => {
     if (!treasury) {
       toast.error("Treasury not found");
@@ -56,11 +67,12 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
       return;
     }
 
-    const toastId = toast.loading("Minting...");
-    console.log("candyMachine", candyMachine);
+    // console.log("candyMachine", candyMachine);
     const candyGuard = await fetchCandyGuard(umi, candyMachine.mintAuthority);
-    console.log("candyGuard", candyGuard);
+    // console.log("candyGuard", candyGuard);
     umi.guards.all();
+
+    const toastId = toast.loading("Minting...");
     try {
       // mint from the candy machine
       const nftMint = generateSigner(umi);
@@ -82,9 +94,22 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
         confirm: { commitment: "confirmed" },
       });
       const txid = bs58.encode(signature);
-      console.log("success", `Mint successful! ${txid}`);
+      // console.log("success", `Mint successful! ${txid}`);
       setMintSuccess(true);
-      toast.success(`Mint successful! See your txn here: `, { id: toastId });
+      toast.success("Mint successful!", {
+        id: toastId,
+        action: {
+          label: "See your tx",
+          onClick: () =>
+            window.open(
+              `https://explorer.solana.com/tx/${txid}${
+                networkType === "devnet" && "?cluster=devnet"
+              }`,
+              "_blank",
+              "noreferrer noopener"
+            ),
+        },
+      });
     } catch (error: any) {
       if (error.message.includes("User rejected")) {
         toast.error("User rejected request", { id: toastId });
@@ -132,7 +157,7 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
   return (
     <motion.button
       className="rounded-md bg-gradient-to-br from-green-400 to-purple-500 
-      px-4 py-2 text-xl font-semibold text-black disabled:opacity-50 disabled:cursor-not-allowed"
+      px-6 py-2 text-xl font-semibold text-black disabled:opacity-50 disabled:cursor-not-allowed"
       onClick={onClick}
       disabled={!wallet || !umi || !candyMachine}
       {...smallClickAnimation}
