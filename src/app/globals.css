@@ -13,3 +13,21 @@
 .wallet-adapter-button:not([disabled]):hover {
   background-color: #303542;
 }
+
+.section1 {
+  background-image: url("/images/backgroundindex.png");
+  background-position: top;
+  background-size: cover;
+}
+
+.section2 {
+  background-image: url("/images/solana-background.png");
+  background-position: top;
+  background-size: cover;
+}
+
+.section3 {
+  background-image: url("/images/footer.png");
+  background-position: top;
+  background-size: cover;
+}

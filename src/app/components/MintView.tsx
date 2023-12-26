@@ -23,7 +23,7 @@ const MintView: FC = () => {
   }, [mintSuccess]);
 
   return (
-    <div className="mt-20 flex flex-col items-center gap-4">
+    <div className="relative w-full h-full flex flex-col items-center">
       {mintSuccess && (
         <div className="z-50 absolute inset-0">
           <Confetti
@@ -35,22 +35,36 @@ const MintView: FC = () => {
           />
         </div>
       )}
-      <p className="text-4xl font-bold">Dubotsu Mint</p>
-      <Image
-        src="/mint.png"
-        width={300}
-        height={300}
-        alt="sample art"
-        className="rounded-lg"
-      />
-      <p className="text-2xl font-bold">Mint your Dubotsu</p>
-      <div className="flex items-center gap-4">
+
+      <div className="w-full bg-white">
+        {/* Section 1 */}
+        <div className="w-full section1 text-white px-4 py-20 min-h-[1000px]">
+          <h2 className="text-3xl font-bold">Welcome to the Jungle!</h2>
+          {/* Content */}
+        </div>
+
+        {/* Section 2 */}
+        <div className="-translate-y-96 w-full section2 text-white px-4 py-20 min-h-[800px]">
+          <div className="">
+            <h2 className="text-3xl font-bold">DOUBTSU</h2>
+          </div>
+        </div>
+
+        {/* Section 3 */}
+        <div className="-translate-y-[600px] w-full section3 text-white px-4 py-20 min-h-[800px]">
+          <div className="">
+            <h2 className="text-3xl font-bold">DOUBTSU</h2>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="flex items-center gap-4">
         {!!publicKey ? (
           <CandyMint setMintSuccess={setMintSuccess} />
         ) : (
           <WalletMultiButton />
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
