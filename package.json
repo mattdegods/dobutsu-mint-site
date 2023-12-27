@@ -22,6 +22,7 @@
     "bs58": "^5.0.0",
     "framer-motion": "^10.16.16",
     "next": "14.0.4",
+    "pino-pretty": "^10.3.0",
     "react": "^18",
     "react-confetti": "^6.1.0",
     "react-dom": "^18",

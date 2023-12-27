@@ -24,6 +24,13 @@ const MintView: FC = () => {
 
   return (
     <div className="relative w-full h-full flex flex-col items-center">
+      <Image
+        src="/images/logo.png"
+        width={200}
+        height={200}
+        alt="logo"
+        className="absolute top-3 left-6 z-50"
+      />
       {mintSuccess && (
         <div className="z-50 absolute inset-0">
           <Confetti
@@ -36,35 +43,78 @@ const MintView: FC = () => {
         </div>
       )}
 
-      <div className="w-full bg-white">
+      <div className="w-full bg-black">
+        <div className="absolute left-1/2 -translate-x-1/2 top-10 z-50">
+          <div className="w-full flex items-center justify-between">
+            <Image
+              src="/images/floater1.png"
+              width={500}
+              height={500}
+              alt="floating character 1"
+              priority
+            />
+            <Image
+              src="/images/floater2.png"
+              width={900}
+              height={900}
+              alt="floating character 2"
+              priority
+            />
+          </div>
+        </div>
         {/* Section 1 */}
-        <div className="w-full section1 text-white px-4 py-20 min-h-[1000px]">
-          <h2 className="text-3xl font-bold">Welcome to the Jungle!</h2>
-          {/* Content */}
+        <div className="relative z-10 w-full section1 text-white px-4 py-20 h-screen">
+          <div className="h-full flex flex-col justify-center px-10">
+            <h2 className="text-4xl font-bold italic">DOBUTSU</h2>
+            <p className="text-6xl font-bold italic uppercase">
+              welcome
+              <br />
+              to the
+              <br />
+              jungle!
+            </p>
+          </div>
         </div>
 
         {/* Section 2 */}
-        <div className="-translate-y-96 w-full section2 text-white px-4 py-20 min-h-[800px]">
-          <div className="">
-            <h2 className="text-3xl font-bold">DOUBTSU</h2>
+        <div className="absolute inset-0 top-[75%] z-20 w-full section2 text-white px-4 py-20 h-[800px]">
+          <div className="w-full flex items-center justify-center gap-20">
+            <Image
+              src="/images/racoon.png"
+              width={600}
+              height={600}
+              alt="racoon"
+            />
+            <Image
+              src="/images/box-text.png"
+              width={500}
+              height={500}
+              alt="box text"
+            />
           </div>
         </div>
 
         {/* Section 3 */}
-        <div className="-translate-y-[600px] w-full section3 text-white px-4 py-20 min-h-[800px]">
-          <div className="">
-            <h2 className="text-3xl font-bold">DOUBTSU</h2>
+        <div className="absolute inset-0 top-[145%] z-30 w-full section3 text-white px-4 min-h-[500px]">
+          <div className="h-full w-1/2 mx-auto flex items-center pt-10">
+            <div className="flex flex-col items-center gap-4">
+              <p className="font-bold text-5xl">Mint your Dobutsu</p>
+              {!!publicKey ? (
+                <CandyMint setMintSuccess={setMintSuccess} />
+              ) : (
+                <WalletMultiButton />
+              )}
+            </div>
           </div>
+          <Image
+            src="/images/rabbit.png"
+            width={500}
+            height={500}
+            alt="rabbit"
+            className="absolute right-0 top-0"
+          />
         </div>
       </div>
-
-      {/* <div className="flex items-center gap-4">
-        {!!publicKey ? (
-          <CandyMint setMintSuccess={setMintSuccess} />
-        ) : (
-          <WalletMultiButton />
-        )}
-      </div> */}
     </div>
   );
 };
