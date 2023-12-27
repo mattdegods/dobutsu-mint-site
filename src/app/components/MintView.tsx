@@ -111,7 +111,7 @@ const MintView: FC = () => {
           </div>
           <div className="absolute right-0 top-0 z-50 hidden lg:block">
             <Image
-              src="/images/rabbit.png"
+              src="/images/Rabbit.png"
               width={480}
               height={480}
               alt="rabbit"
