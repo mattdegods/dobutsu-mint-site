@@ -156,8 +156,8 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
 
   return (
     <motion.button
-      className="rounded-md bg-gradient-to-br from-green-400 to-purple-500 
-      px-6 py-2 text-xl font-semibold text-black disabled:opacity-50 disabled:cursor-not-allowed"
+      className="rounded-md bg-gradient-to-br from-green-400 to-purple-500 text-2xl
+      px-10 py-5 font-semibold text-white uppercase disabled:opacity-50 disabled:cursor-not-allowed"
       onClick={onClick}
       disabled={!wallet || !umi || !candyMachine}
       {...smallClickAnimation}
