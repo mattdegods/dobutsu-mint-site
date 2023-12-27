@@ -106,13 +106,14 @@ const MintView: FC = () => {
               )}
             </div>
           </div>
-          <Image
-            src="/images/rabbit.png"
-            width={500}
-            height={500}
-            alt="rabbit"
-            className="absolute right-0 top-0"
-          />
+          <div className="absolute right-0 top-0">
+            <Image
+              src="/images/rabbit.png"
+              width={500}
+              height={500}
+              alt="rabbit"
+            />
+          </div>
         </div>
       </div>
     </div>
