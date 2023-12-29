@@ -2,7 +2,7 @@ import MintView from "./components/MintView";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mint.dobutsu.club"),
+  metadataBase: new URL("https://mint.dobutsu.xyz"),
   alternates: {
     canonical: "/",
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
       },
     ],
     card: "summary_large_image",
-    site: "https://mint.dobutsu.club",
+    site: "https://mint.dobutsu.xyz",
     creator: "@DobutsuNFTs",
     creatorId: "DobutsuNFTs",
   },
