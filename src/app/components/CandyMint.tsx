@@ -51,6 +51,9 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
   // Determine the network type
   const networkType = getNetworkType(connection.rpcEndpoint);
 
+  const soldOut =
+    candyMachine?.itemsRedeemed === candyMachine?.data.itemsAvailable;
+
   const onClick = async () => {
     if (!treasury) {
       toast.error("Treasury not found");
@@ -155,15 +158,21 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
   if (!candyMachine) return <DotLoader color="white" />;
 
   return (
-    <motion.button
-      className="rounded-md bg-gradient-to-br from-green-400 to-purple-500 text-2xl
-      px-10 py-5 font-semibold text-white uppercase disabled:opacity-50 disabled:cursor-not-allowed"
-      onClick={onClick}
-      disabled={!wallet || !umi || !candyMachine}
-      {...smallClickAnimation}
-    >
-      {`Mint`}
-    </motion.button>
+    <>
+      <p className="italic">{`Price: 1 SOL -- Minted: ${Number(
+        candyMachine.itemsRedeemed
+      )} / ${candyMachine.data.itemsAvailable}`}</p>
+
+      <motion.button
+        className="rounded-md bg-gradient-to-br from-green-400 to-purple-500 text-2xl
+        px-10 py-5 font-semibold text-white uppercase disabled:opacity-50 disabled:cursor-not-allowed"
+        onClick={onClick}
+        disabled={!wallet || !umi || !candyMachine || soldOut}
+        {...smallClickAnimation}
+      >
+        {soldOut ? "SOLD OUT" : "MINT"}
+      </motion.button>
+    </>
   );
 };
 

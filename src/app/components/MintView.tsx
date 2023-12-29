@@ -29,22 +29,10 @@ const MintView: FC = () => {
         width={200}
         height={200}
         alt="logo"
-        className="absolute top-3 left-6 z-50"
+        className="absolute top-3 left-6 z-40"
       />
-      {mintSuccess && (
-        <div className="z-50 absolute inset-0">
-          <Confetti
-            width={width}
-            height={height}
-            recycle={false}
-            numberOfPieces={400}
-            tweenDuration={10000}
-          />
-        </div>
-      )}
-
       <div className="w-full bg-black">
-        <div className="absolute left-1/2 -translate-x-1/2 top-10 z-50">
+        <div className="absolute left-1/2 -translate-x-1/2 top-10 z-40">
           <div className="w-full flex items-center justify-between">
             <Image
               src="/images/floater1.png"
@@ -99,7 +87,7 @@ const MintView: FC = () => {
         <div className="absolute inset-0 top-[140%] 3xl:top-[120%] z-30 w-full section3 text-white px-4 min-h-[500px]">
           <div className="h-full w-1/2 mx-auto flex items-center pt-10">
             <div className="flex flex-col items-center gap-5">
-              <p className="font-bold text-5xl text-center">
+              <p className="font-bold italic text-5xl text-center">
                 Mint your Dobutsu
               </p>
               {!!publicKey ? (
@@ -109,7 +97,7 @@ const MintView: FC = () => {
               )}
             </div>
           </div>
-          <div className="absolute right-0 top-0 z-50 hidden lg:block">
+          <div className="absolute right-0 bottom-0 z-30 hidden lg:block">
             <Image
               src="/images/Rabbit.png"
               width={480}
@@ -117,9 +105,9 @@ const MintView: FC = () => {
               alt="rabbit"
             />
           </div>
-          <div className="absolute right-0 bottom-0 z-50 lg:hidden">
+          <div className="absolute right-0 bottom-0 z-30 lg:hidden">
             <Image
-              src="/images/rabbit.png"
+              src="/images/Rabbit.png"
               width={200}
               height={200}
               alt="rabbit"
@@ -127,6 +115,17 @@ const MintView: FC = () => {
           </div>
         </div>
       </div>
+      {mintSuccess && (
+        <div className="z-50 fixed inset-0">
+          <Confetti
+            width={width}
+            height={height}
+            recycle={false}
+            numberOfPieces={400}
+            tweenDuration={10000}
+          />
+        </div>
+      )}
     </div>
   );
 };
