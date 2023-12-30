@@ -72,7 +72,7 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
 
     // console.log("candyMachine", candyMachine);
     const candyGuard = await fetchCandyGuard(umi, candyMachine.mintAuthority);
-    // console.log("candyGuard", candyGuard);
+    console.log("candyGuard", candyGuard);
     umi.guards.all();
 
     const toastId = toast.loading("Minting...");
