@@ -32,7 +32,7 @@ const MintView: FC = () => {
         className="absolute top-3 left-6 z-40"
       />
       <div className="w-full bg-black">
-        <div className="absolute left-1/2 -translate-x-1/2 top-10 z-40">
+        <div className="absolute left-1/2 -translate-x-1/2 top-36 sm:top-10 z-40">
           <div className="w-full flex items-center justify-between">
             <Image
               src="/images/floater1.png"
@@ -66,7 +66,7 @@ const MintView: FC = () => {
 
         {/* Section 2 */}
         <div className="absolute inset-0 top-[75%] 3xl:top-[69%] z-20 w-full section2 text-white px-4 py-20 h-[800px]">
-          <div className="h-full w-full flex items-center justify-center xl:gap-20">
+          <div className="-translate-y-20 sm:translate-y-0 -translate-x-3 sm:translate-x-0 h-full w-full flex items-center justify-center xl:gap-20">
             <Image
               src="/images/racoon.png"
               width={600}
@@ -105,11 +105,11 @@ const MintView: FC = () => {
               alt="rabbit"
             />
           </div>
-          <div className="absolute right-0 bottom-0 z-30 lg:hidden">
+          <div className="absolute right-0 bottom-0 z-[-1] lg:hidden">
             <Image
               src="/images/Rabbit.png"
-              width={200}
-              height={200}
+              width={180}
+              height={180}
               alt="rabbit"
             />
           </div>
