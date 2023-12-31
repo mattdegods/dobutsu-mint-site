@@ -51,8 +51,7 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
   // Determine the network type
   const networkType = getNetworkType(connection.rpcEndpoint);
 
-  const soldOut =
-    candyMachine?.itemsRedeemed === candyMachine?.data.itemsAvailable;
+  const soldOut = Number(candyMachine?.itemsRedeemed) === 2905;
 
   const onClick = async () => {
     if (!treasury) {
@@ -159,7 +158,7 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
 
   return (
     <>
-      <p className="italic">{`Price: 1 SOL -- Minted: ${Number(
+      <p className="italic">{`Price: 0.5 SOL -- Minted: ${Number(
         candyMachine.itemsRedeemed
       )} / ${candyMachine.data.itemsAvailable}`}</p>
 
