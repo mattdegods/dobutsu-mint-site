@@ -5,8 +5,12 @@ import Image from "next/image";
 import CandyMint from "./CandyMint";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Confetti from "react-confetti";
+import dynamic from "next/dynamic";
+
+const ConnectButton = dynamic(() => import("./ConnectButton"), {
+  ssr: false,
+});
 
 const MintView: FC = () => {
   const { publicKey } = useWallet();
@@ -90,10 +94,10 @@ const MintView: FC = () => {
               <p className="font-bold italic text-5xl text-center">
                 Mint your Dobutsu
               </p>
-              {!!publicKey ? (
+              {publicKey ? (
                 <CandyMint setMintSuccess={setMintSuccess} />
               ) : (
-                <WalletMultiButton />
+                <ConnectButton />
               )}
             </div>
           </div>

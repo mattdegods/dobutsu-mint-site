@@ -73,7 +73,6 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
     const candyGuard = await fetchCandyGuard(umi, candyMachine.mintAuthority);
     console.log("candyGuard", candyGuard);
     umi.guards.all();
-
     const toastId = toast.loading("Minting...");
     try {
       // mint from the candy machine
@@ -92,6 +91,7 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
             },
           })
         );
+
       const { signature } = await transaction.sendAndConfirm(umi, {
         confirm: { commitment: "confirmed" },
       });
