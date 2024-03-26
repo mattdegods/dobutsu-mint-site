@@ -1,7 +1,6 @@
 import "./globals.css";
 import ClientWrapper from "./components/ClientWrapper";
 import { Toaster } from "sonner";
-import Head from "next/head";
 
 export default function RootLayout({
   children,

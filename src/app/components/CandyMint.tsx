@@ -8,7 +8,10 @@ import {
   fetchCandyMachine,
   mintV2,
 } from "@metaplex-foundation/mpl-candy-machine";
-import { setComputeUnitLimit } from "@metaplex-foundation/mpl-toolbox";
+import {
+  setComputeUnitLimit,
+  setComputeUnitPrice,
+} from "@metaplex-foundation/mpl-toolbox";
 import {
   Umi,
   generateSigner,
@@ -79,6 +82,7 @@ const CandyMint: FC<Props> = ({ setMintSuccess }) => {
       const nftMint = generateSigner(umi);
       const transaction = transactionBuilder()
         .add(setComputeUnitLimit(umi, { units: 800_000 }))
+        .add(setComputeUnitPrice(umi, { microLamports: 5 }))
         .add(
           mintV2(umi, {
             candyMachine: candyMachine.publicKey,
